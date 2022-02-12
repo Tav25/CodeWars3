@@ -1,31 +1,25 @@
-// Bingo Card
-//https://www.codewars.com/kata/566d5e2e57d8fae53c00000c/train/javascript
+// Bit Counting
+// https://www.codewars.com/kata/526571aae218b8ee490006f4/train/javascript
 
-// 5 numbers from the B column in the range 1 to 15
-// 5 numbers from the I column in the range 16 to 30
-// 4 numbers from the N column in the range 31 to 45
-// 5 numbers from the G column in the range 46 to 60
-// 5 numbers from the O column in the range 61 to 75
-function getCard() {
-  const arrB = shuffle(genArr(1, "B")).slice(0, 5);
-  const arrI = shuffle(genArr(16, "I")).slice(0, 5);
-  const arrN = shuffle(genArr(31, "N")).slice(0, 4);
-  const arrG = shuffle(genArr(46, "G")).slice(0, 5);
-  const arrO = shuffle(genArr(61, "O")).slice(0, 5);
-  return [...arrB, ...arrI,...arrN,...arrG,...arrO];
+// assert.strictEqual(countBits(10), 2);
+
+function countBits(n) {
+  let result = 0;
+  let bit  = n.toString(2)
+  Array.from(bit).forEach((element) => {
+    if (element === "1") {
+      result++;
+    }
+  });
+  return result;
 }
 
-function genArr(numStart, letter) {
-//   console.log(Array.from({ length: 15 }, (_, i) => letter + (i + numStart)));
-  return Array.from({ length: 15 }, (_, i) => letter + (i + numStart));
-}
+console.log(countBits(6905847168)); // 1
 
-function makeRandomArr(a, b) {
-  return Math.random() - 0.5;
-}
+countBits(6905847168) //should equal 18 expected 17 to equal 18
 
-const shuffle = (arr) => {
-  return arr.sort(() => Math.round(Math.random() * 100) - 50);
-};
+console.log((6905847168 >>> 0).toString(2))
 
-console.log(getCard());
+
+10011011100111101101110110000000
+110011011100111101101110110000000
